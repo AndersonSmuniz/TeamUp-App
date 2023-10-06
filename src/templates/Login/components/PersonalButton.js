@@ -1,23 +1,27 @@
 import React from "react";
 import { Pressable, StyleSheet, Text } from "react-native";
+import Texto from "./Texto";
 
-export default function PersonalButton({texto}) {
+export default function PersonalButton({ texto, style }) {
 
-    return <Pressable onPress={'ok'} style={estilo.btn}>
-        <Text style={estilo.texto}>{texto}</Text>
+    return <Pressable onPress={'ok'} style={[style, estilos.btn]}>
+        <Texto style={estilos.texto}>{texto}</Texto>
     </Pressable>
 }
-const estilo = StyleSheet.create({
-    btn:{
+
+const estilos = StyleSheet.create({
+    btn: {
         backgroundColor: '#E1792C',
         borderWidth: 2,
         borderRadius: 31,
-        paddingHorizontal: 50,
-        paddingVertical: 10,
         margin: 14,
-    
+        paddingHorizontal: 120,
+        paddingVertical: 15,
+
     },
-    texto:{
+    texto: {
         color: 'white',
+        fontWeight: 'bold',
+        fontSize: 24,
     }
 })
