@@ -1,26 +1,29 @@
 import React from "react";
-import { Image, StyleSheet, Text } from "react-native";
-import { View } from "react-native";
-import Logo from '../../../assets/marca/logoTeamUp.png'
-
-import Icon from 'react-native-vector-icons/Ionicons';
+import {  ScrollView, StyleSheet, Text, View } from "react-native";
+import Texto from "../components/Texto";
+import { styles } from "../../Estilos/estilos";
+import ProgressBar from 'react-native-progress/Bar';
 
 export default function Principal() {
 
-    return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Image source={Logo} style={estilo.logo} />
-          <Text style={estilo.ss}>Home Screen</Text>
-        </View>
+    const progress = 0.9;
+
+  return (
+        <ScrollView style={{ backgroundColor: '#000' }}>
+            <View>
+                <Texto style={estilosLocal.texto}>OVERALL</Texto>
+                <View>
+                    <Texto>Progresso: {progress * 100}%</Texto>
+                    <ProgressBar progress={progress} width={300} height={20} />
+                </View>
+            </View>
+        </ScrollView>
       );
 }
 
-const estilo = StyleSheet.create({
-    ss : {
-        backgroundColor: 'blue',
-        marginHorizontal: '100%',
-        marginVertical: '100%',
-        color: 'red',
-        fontSize: 40
+const estilosLocal = StyleSheet.create({
+    texto: {
+        color: 'white',
+        fontSize: 24,
     }
 });
