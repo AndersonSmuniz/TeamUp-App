@@ -1,12 +1,13 @@
 import React from "react";
-import { Pressable, StyleSheet, Text } from "react-native";
+import {TouchableOpacity, StyleSheet, Text } from "react-native";
 import Texto from "./Texto";
 
 export default function PersonalButton({ texto, style }) {
 
-    return <Pressable onPress={'ok'} style={[style, estilos.btn]}>
+    return <TouchableOpacity onPress={Entrar}
+     style={[style, estilos.btn]}>
         <Texto style={estilos.texto}>{texto}</Texto>
-    </Pressable>
+    </TouchableOpacity>
 }
 
 const estilos = StyleSheet.create({

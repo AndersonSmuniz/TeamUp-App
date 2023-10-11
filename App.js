@@ -1,20 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Login from './src/templates/Login';
+import { StyleSheet, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import AppRotas from './src/rotas/AppRotas';
+
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Login />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <StatusBar style="inverted"
+        backgroundColor='black' />
+      <AppRotas />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
+  
 });
