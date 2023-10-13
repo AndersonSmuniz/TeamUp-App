@@ -1,13 +1,29 @@
-import React from 'react';
-import { View, Image, ScrollView, TouchableOpacity, Text } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Image, ScrollView, TouchableOpacity, Text, ProgressBarAndroidBase } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import nomeLogo from '../../../assets/marca/NomeLogo.png'
 import Texto from '../components/Texto';
 import { Line, Svg } from 'react-native-svg';
 import card from '../../../assets/cards/gold/card.png'
+import CustomProgressBar from './CustomProgressBar';
+import GameCard from '../components/Gamecard';
 
 export default function Principal() {
+
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (progress < 1) {
+        setProgress(progress + 0.01);
+      } else {
+        clearInterval(interval);
+      }
+    }, 100);
+    return () => clearInterval(interval);
+  }, [progress]);
+
 
   return (
     <ScrollView style={{ backgroundColor: '#000' }}>
@@ -57,10 +73,20 @@ export default function Principal() {
                 <Text style={styles.infoText}>10</Text>
               </View>
             </View>
-          </View>
+          </View> 
         </View>
-      </View>
+        
+      </View >
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Texto style={styles.tituloOverall}>OVERALL</Texto>
+          <CustomProgressBar total={1000} current={750}/>
+        </View>
 
+        <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: '10%'}}>
+          <Texto style={{fontSize:30, fontWeight:'bold', color: '#fff'}}>Meus Jogos</Texto>
+
+          <GameCard />
+        </View>
     </ScrollView>
   );
 };
@@ -98,7 +124,7 @@ const styles = {
   card: {
     height: 400,
     marginTop: 20,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   avatarContainer: {
     position: 'absolute',
@@ -108,13 +134,22 @@ const styles = {
   avatar: {
     width: 200,
     height: 130,
-    resizeMode: 'contain',
-    borderRadius: 20,
+    resizeMode: 'cover',
+    borderRadius: 30,
+  },
+  tituloOverall:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex:1,
+    marginVertical: 15,
+    fontWeight: 'bold',
+    color: '#45E12C',
+    fontSize: 20    
   },
   infoContent: {
     backgroundColor: '#F0CB2D',
     margin: 5,
-    paddingBottom: 60,
+    paddingBottom: 55,
     borderBottomLeftRadius: 60, 
     borderBottomRightRadius: 60,
     flex:1,
@@ -125,19 +160,20 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     fontWeight: 'bold',
+    marginTop:5
   },
   info: {
     marginHorizontal: 10,
-    margin: 5,
-    
   },
   labelValueContainer: {
     flexDirection: 'row',
   },
   infoText:{
     fontWeight: 'bold',
-    flex:1,
-    marginHorizontal:5,
+    flex: 1,
+    marginVertical: 2,
+    marginHorizontal: 5,
     justifyContent: 'space-between',
+    fontSize: 16
   }
 };

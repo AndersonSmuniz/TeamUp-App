@@ -1,85 +1,46 @@
-import React, { useEffect } from "react";
-import { TextInput, View } from "react-native";
-import Animated, { interpolateColor, useAnimatedProps, useDerivedValue, useSharedValue, withTiming } from "react-native-reanimated";
-import { Circle, Svg } from "react-native-svg";
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import Texto from '../components/Texto';
 
-const AnimatedCircle = Animated.createAnimatedComponent(Circle);
-const AnimatedText = Animated.createAnimatedComponent(TextInput);
+function HorizontalProgressBar({ total, current }) {
+  const screenWidth = Dimensions.get('window').width;
+  const progress = (current / total) * 100;
 
-const radius = 45;
-const circumference = radius * Math.PI * 2;
-const duration = 6000;
-
-const CustomProgressBar= () => {
-
-  const strokeOffset = useSharedValue(circumference);
-
-  const percentage = useDerivedValue(() => {
-    const number = ((circumference - strokeOffset.value) / circumference ) * 100;
-    return withTiming(number, { duration: duration });
-  });
-
-  const strokeColor = useDerivedValue(() => {
-    return interpolateColor(
-      percentage.value,
-      [0, 50, 100],
-      ["#9E4784", "#66347F", "#37306B"]
-    );
-  });
-
-  const animatedCircleProps = useAnimatedProps(() => {
-    return {
-      strokeDashoffset: withTiming(strokeOffset.value, { duration: duration }),
-      stroke: strokeColor.value,
-    };
-  });
-
-  const animatedTextProps = useAnimatedProps(() => {
-    return {
-      text: `${Math.round(percentage.value)} %`
-    }
-  });
-
-  useEffect(() => {
-      strokeOffset.value = 0;
-  }, []);
-
-  return (
-    <View style={{
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}>
-      <AnimatedText
-        style={{
-          color:"red",
-          fontSize: 24,
-          fontWeight: 'bold',
-          position: 'absolute',
-        }}
-        animatedProps={animatedTextProps}
-      />
-      <Svg height="50%" width="50%" viewBox="0 0 100 100" >
-        <Circle 
-          cx="50"
-          cy="50"
-          r="45"
-          stroke="blue"
-          strokeWidth="10"
-          fill="transparent"
-        />
-        <AnimatedCircle
-          animatedProps={animatedCircleProps}
-          cx="50"
-          cy="50"
-          r="45"
-          strokeDasharray={`${radius * Math.PI * 2}`}
-          strokeWidth="10"
-          fill="transparent"
-        />
-      </Svg>
-    </View>
+  return (<>
+          <View style={styles.progressBar}>
+            <View style={[styles.progress, { width: `${progress}%` }]}>
+            </View>
+          </View>
+          <Texto style={styles.progressText}>{progress.toFixed(0)}%</Texto>
+        </>
+  
   );
-};
+}
 
-export default CustomProgressBar;
+const styles = StyleSheet.create({
+  progressBar: {
+    width: '80%',
+    height: 35,
+    backgroundColor: '#636363', 
+    borderColor: '#636363',
+    borderWidth: 5,
+    borderRadius: 20
+  },
+  progress: {
+    height: '50%',
+    backgroundColor: '#45E12C',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 7,
+    borderTopRightRadius: 20,
+    borderBottomRightRadius:20
+  },
+  progressText: {
+    color: '#45E12C',
+    fontWeight: 'bold',
+    marginTop: 10,
+    fontSize:20
+  },
+});
+
+export default HorizontalProgressBar;
