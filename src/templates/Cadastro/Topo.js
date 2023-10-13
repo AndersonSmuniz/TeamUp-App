@@ -23,6 +23,7 @@ const estilos = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-evenly',
     padding: 20,
+    marginTop: 15,
     width:'100%',
     
   },
