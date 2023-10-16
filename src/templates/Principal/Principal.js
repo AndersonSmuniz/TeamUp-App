@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, Image, ScrollView, TouchableOpacity, Text, ProgressBarAndroidBase } from 'react-native';
+import { View, Image, ScrollView,  Text } from 'react-native';
 
-import Icon from 'react-native-vector-icons/Ionicons';
-import nomeLogo from '../../../assets/marca/NomeLogo.png'
 import Texto from '../components/Texto';
 import { Line, Svg } from 'react-native-svg';
 import card from '../../../assets/cards/gold/card.png'
 import CustomProgressBar from './CustomProgressBar';
 import GameCard from '../components/Gamecard';
+import Logotop from '../components/LogoTop';
 
 export default function Principal() {
 
@@ -27,17 +26,7 @@ export default function Principal() {
 
   return (
     <ScrollView style={{ backgroundColor: '#000' }}>
-      <View style={styles.header}>
-        {/*Fazer um componente*/}
-        <TouchableOpacity style={styles.iconContainer}>
-          <Icon name="notifications" size={30} color="#fff" />
-        </TouchableOpacity>
-        <Image source={nomeLogo} style={styles.logoImage} />
-        <TouchableOpacity style={styles.iconContainer}>
-          <Icon name="settings-sharp" size={30} color="#fff" />
-        </TouchableOpacity>
-
-      </View>
+      <Logotop />
       <View style={styles.centerContainer}>
         <Svg height="1" width="100">
           <Line x1="1" y1="0.5" x2="199" y2="0.5" stroke="white" strokeWidth="1" />
@@ -73,20 +62,20 @@ export default function Principal() {
                 <Text style={styles.infoText}>10</Text>
               </View>
             </View>
-          </View> 
+          </View>
         </View>
-        
+
       </View >
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Texto style={styles.tituloOverall}>OVERALL</Texto>
-          <CustomProgressBar total={1000} current={750}/>
-        </View>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Texto style={styles.tituloOverall}>OVERALL</Texto>
+        <CustomProgressBar total={1000} current={800} />
+      </View>
+      
+      <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: '10%' }}>
+        <Texto style={{ fontSize: 30, fontWeight: 'bold', color: '#fff' }}>Meus Jogos</Texto>
 
-        <View style={{ justifyContent: 'center', alignItems: 'center', marginVertical: '10%'}}>
-          <Texto style={{fontSize:30, fontWeight:'bold', color: '#fff'}}>Meus Jogos</Texto>
-
-          <GameCard />
-        </View>
+        <GameCard />
+      </View>
     </ScrollView>
   );
 };
@@ -137,22 +126,22 @@ const styles = {
     resizeMode: 'cover',
     borderRadius: 30,
   },
-  tituloOverall:{
+  tituloOverall: {
     alignItems: 'center',
     justifyContent: 'center',
-    flex:1,
+    flex: 1,
     marginVertical: 15,
     fontWeight: 'bold',
     color: '#45E12C',
-    fontSize: 20    
+    fontSize: 20
   },
   infoContent: {
     backgroundColor: '#F0CB2D',
     margin: 5,
     paddingBottom: 55,
-    borderBottomLeftRadius: 60, 
+    borderBottomLeftRadius: 60,
     borderBottomRightRadius: 60,
-    flex:1,
+    flex: 1,
   },
   infoTitle: {
     left: 50,
@@ -160,7 +149,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     fontWeight: 'bold',
-    marginTop:5
+    marginTop: 5
   },
   info: {
     marginHorizontal: 10,
@@ -168,7 +157,7 @@ const styles = {
   labelValueContainer: {
     flexDirection: 'row',
   },
-  infoText:{
+  infoText: {
     fontWeight: 'bold',
     flex: 1,
     marginVertical: 2,
