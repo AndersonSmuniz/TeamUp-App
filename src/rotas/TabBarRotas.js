@@ -16,7 +16,15 @@ function TabBarRotas() {
     return (
         <NavigationContainer>
             <Tab.Navigator
+                initialRouteName="Principal"
                 screenOptions={({ route }) => ({
+                    "tabBarShowLabel": false,
+                    "tabBarStyle": [
+                        {
+                            "display": "flex"
+                        },
+                        null
+                    ],
                     headerShown: false,
                     tabBarStyle: {
                         backgroundColor: "#222222",
@@ -51,16 +59,13 @@ function TabBarRotas() {
                             }}>
                                 <Image source={iconName} style={{
                                     width: 25,
-                                    height:25,
-                                    resizeMode:'contain'
+                                    height: 25,
+                                    resizeMode: 'contain'
                                 }} />
                             </View>
                         );
                     },
                 })}
-                tabBarOptions={{
-                    showLabel: false,
-                }}
             >
                 <Tab.Screen name='Ranking' component={Ranking} />
                 <Tab.Screen name='Principal' component={Principal} />

@@ -3,7 +3,7 @@ import { StyleSheet, View, ScrollView, TextInput, TouchableOpacity, Dimensions }
 
 import { criarLogin } from "../../../servicos/requisicoes/usuarios";
 import { styles } from '../../Estilos/estilos';
-import Topo from './Topo'
+import Topo from '../components/Topo'
 import Texto from "../components/Texto";
 
 export default function Cadastro({navigation}) {

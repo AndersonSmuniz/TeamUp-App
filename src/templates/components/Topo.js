@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import Texto from '../components/Texto';
+import Texto from './Texto';
 
 const Topo = ({ titulo, navigation, style }) => {
 
